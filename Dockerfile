@@ -34,7 +34,7 @@ RUN git clone --no-checkout https://github.com/raspberrypi/rpi-image-gen.git && 
 RUN /bin/bash -c 'apt-get update && rpi-image-gen/install_deps.sh'
 
 ENV USER imagegen
-RUN useradd -u 4000 -ms /bin/bash "$USER" && echo "${USER}:${USER}" | chpasswd && adduser ${USER} sudo
+RUN useradd -u 4000 -ms /bin/bash "$USER" && echo "${USER}:${USER}" | chpasswd && adduser ${USER} sudo # only add to sudo if build scripts require it
 USER ${USER}
 WORKDIR /home/${USER}
 
