@@ -12,7 +12,7 @@ Run the image
 docker compose run --rm rpi_imagegen
 ```
 
-# if you are on intel chip do this else don’t
+if you are on intel chip do this else don’t
 ```bash
 $sudo su
 $mount binfmt_misc -t binfmt_misc /proc/sys/fs/binfmt_misc && echo 1 > /proc/sys/fs/binfmt_misc/status
