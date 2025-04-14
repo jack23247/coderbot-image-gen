@@ -1,4 +1,4 @@
-#rpi-image-gen-example
+# rpi-image-gen-example
 
 Build a default system with auto login to the macmind user.
 
