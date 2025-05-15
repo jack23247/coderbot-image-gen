@@ -1,0 +1,9 @@
+DEVICE_USER1=coderbot
+DEVICE_USER1PASS=coderbot
+DEVICE_TIMEZONE_AREA="Europe"
+DEVICE_TIMEZONE_CITY="Rome"
+DEVICE_LOCALE1="en_US.UTF-8 UTF-8"
+DEVICE_KEYBOARD_LAYOUT="Italian"
+DEVICE_KEYBOARD_KEYMAP="it"
+WIRELESS_CFG=${IGconf_ext_dir}/wpa_supplicant.conf
+LIBCODERBOT_REPO="https://github.com/jack23247/libcoderbot.git"

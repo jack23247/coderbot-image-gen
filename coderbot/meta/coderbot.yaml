@@ -1,0 +1,32 @@
+---
+name: coderbot
+mmdebstrap:
+# setup-hooks:
+# essential-hooks:
+  customize-hooks:
+#   - chroot $1 sh -c "useradd -m -s /bin/bash -u 4000 $IGconf_device_user1"
+    - |-
+      if [ -n "$IGconf_device_user1pass" ] ; then
+         chroot $1 sh -c "echo ${IGconf_device_user1}:${IGconf_device_user1pass} | chpasswd"
+      fi
+    - chroot $1 usermod --pass='*' root
+    - |-
+      if [ -n "$IGconf_wireless_cfg" ] ; then
+         mkdir -p $1/etc/wpa_supplicant && cp -a ${IGconf_wireless_cfg} $1/etc/wpa_supplicant/wpa_supplicant.conf
+      fi
+    - |-
+      if [ -n "$IGconf_wireless_cfg" ] ; then
+         cd $1/home/$IGconf_device_user1 && git clone ${IGconf_libcoderbot_repo}
+      fi
+  cleanup-hooks:
+    - chroot $1 apt -y autoremove --purge 
+  packages:
+    - git
+    - build-essential
+    - pigpio
+    - doxygen
+    - micro
+    - vim
+    - wpasupplicant
+    - net-tools
+    - wireless-tools

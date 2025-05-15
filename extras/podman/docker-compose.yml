@@ -2,8 +2,11 @@ services:
     rpi_imagegen:
         build: .
         privileged: true
+        userns_mode: keep-id
         stdin_open: true
         tty: true
         image: rpi-imagegen:latest
         volumes:
-            - ./macmind:/home/imagegen/macmind
+            - ./coderbot:/build/coderbot
+            - /proc/sys/fs/binfmt_misc:/proc/sys/fs/binfmt_misc  
+      

@@ -1,47 +1,25 @@
-# rpi-image-gen-example
+# coderbot-image-gen
 
-Build a default system with auto login to the macmind user.
+Builds a Raspbian image customized for the CoderBot
 
-This has been tested on both ARM64 Mac and AMD64 Mac laptops.
+## Debian Hosts
 
-AMD is much slower as expected due to emulation.
+On Debian(-derived) hosts, you can use `rpi-image-gen` to provision the image.
 
-```bash
-git clone https://github.com/jonnymacs/rpi-image-gen-example
-```
+1. Clone `rpi-image-gen` in this repo's root folder
+2. Run `preinstall.sh`
+3. Change whatever you want in `coderbot/`
+4. Run `build.sh`
 
-Build the docker image
+The resulting image will be copied to the `deploy/` folder.
 
-```bash
-docker compose build
-```
+## TODOs
 
-Run the image
+- Proper Wi-Fi setup
+- Test SSH server
+- Change/customize hostname
+	- from the CLI (e.g. `bash build.sh emb-cb01` -> `deploy/[...]_emb-cb01.img`)
 
-```bash
-docker compose run --rm rpi_imagegen
-```
+## Podman
 
-Build the rpi img
-
-```bash
-rpi-image-gen/build.sh -o ~/macmind/macmind.options -D ~/macmind -c macmind
-```
-
-From another terminal window, copy the generated image to the host
-
-```bash
- docker ps --format '{{.Names}}' | xargs -I '{}' -- docker cp {}:/home/imagegen/rpi-image-gen/work/macminds/deploy/macminds.img ~/
-```
-
-Use the Raspberry Pi Imager tool to install the img file on an SD card or USB stick
-
-**[Watch and Like the recorded video for this project on YouTube](https://www.youtube.com/watch?v=kxl_swm93XE)** 
-
-[![Watch and Like the recorded video for this project on YouTube](https://img.youtube.com/vi/kxl_swm93XE/maxresdefault.jpg)](https://www.youtube.com/watch?v=kxl_swm93XE)
-
-**[Subscribe to the channel for more similar content](https://www.youtube.com/@macmind-io?sub_confirmation=1)
-
-Please refer to https://github.com/raspberrypi/rpi-image-gen for more information rpi-image-gen
-
-[Follow me on X](https://x.com/jonnymacs), or join my [Discord](https://discord.gg/5KjjbhYY) and don't forget to star [this GitHub repository](https://github.com/jonnymacs/rpi_tutorials)!
+I tried using Podman-in-Podman to no avail; you can find the scripts in `extras/podman` if you want to play around with them. This also means that building on non-Debian systems (e.g. Fedora) is not supported.

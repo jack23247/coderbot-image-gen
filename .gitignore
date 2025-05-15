@@ -1,0 +1,4 @@
+deploy/
+*.qcow2
+*.img
+*.iso
